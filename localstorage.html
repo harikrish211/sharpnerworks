@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Storage Example</title>
+</head>
+<body>
+
+  <h1>Save Text to Local Storage</h1>
+
+  <input type="text" id="textInput" placeholder="Enter some text">
+  <button onclick="saveText()">Save to Local Storage</button>
+  <button onclick="loadText()">Load from Local Storage</button>
+  <button onclick="clearStorage()">Clear Local Storage</button>
+
+  <p id="savedText"></p>
+
+  <script>
+    // Save text to local storage
+    function saveText() {
+      const text = document.getElementById("textInput").value;
+      localStorage.setItem("savedText", text);
+      alert("Text saved!");
+    }
+
+    // Load text from local storage
+    function loadText() {
+      const savedText = localStorage.getItem("savedText");
+      if (savedText) {
+        document.getElementById("savedText").textContent = "Saved Text: " + savedText;
+      } else {
+        document.getElementById("savedText").textContent = "No text found in local storage.";
+      }
+    }
+
+    // Clear local storage
+    function clearStorage() {
+      localStorage.removeItem("savedText");
+      document.getElementById("savedText").textContent = "";
+      alert("Local storage cleared!");
+    }
+  </script>
+
+</body>
+</html>
