@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage Example</title>
+    <style>
+        #userInfo {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>LocalStorage Example</h2>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" placeholder="Enter First Name"><br><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" placeholder="Enter Last Name"><br><br>
+
+    <button onclick="saveToLocalStorage()">Save Info</button><br><br>
+
+    <button onclick="displayUserInfo()">Display Info</button>
+    <button onclick="deleteUserInfo()">Delete Info</button>
+
+    <div id="userInfo"></div>
+
+    <script>
+        // Function to save the first name and last name to localStorage
+        function saveToLocalStorage() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            
+            if (firstName && lastName) {
+                localStorage.setItem('firstName', firstName);
+                localStorage.setItem('lastName', lastName);
+                alert("Information saved to localStorage!");
+            } else {
+                alert("Please enter both first name and last name.");
+            }
+        }
+
+        // Function to display the saved first name and last name on the page
+        function displayUserInfo() {
+            var firstName = localStorage.getItem('firstName');
+            var lastName = localStorage.getItem('lastName');
+
+            if (firstName && lastName) {
+                document.getElementById('userInfo').innerHTML = `Full Name: ${firstName} ${lastName}`;
+            } else {
+                document.getElementById('userInfo').innerHTML = "No data found in localStorage.";
+            }
+        }
+
+        // Function to delete the saved information from localStorage
+        function deleteUserInfo() {
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            document.getElementById('userInfo').innerHTML = "Information has been deleted.";
+            alert("Information deleted from localStorage!");
+        }
+    </script>
+</body>
+</html>
